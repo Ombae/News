@@ -1,28 +1,61 @@
 <!DOCTYPE html>
 <html>
+    <head>
+        <meta charset="utf-8">
+        {% if title %}
+        <title> {{ title }}</title>
+        <link rel="icon" type="image/ico" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdwgvYR6xRD7tWFURrhfoLcMB5v1OSBQXIjxB5QLwjlLf415iR" />
+        {% else %}
+        <title> QUICK FACTS </title>
+        {% endif %}
 
-<head>
-    <meta charset="utf-8"> {% if title %}
-    <title> {{ title }}</title>
-    {% else %}
-    <title> Welcome to the Space </title>
-    {% endif %}
-</head>
-{% extends 'base.html'%} {% import 'macros.html' as macro%}
+        {% extends 'base.html'%}
+        <style>
+        </style>
+        
+    </head>
+    <body>
 
-<body>
-    {% block content %}
+        {% block styles%}
+    {{ super() }}
+    <link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
+{% endblock %}
+        <!-- sources section -->
 
-    <div class="jumbotron">
-      <h1 class="text-center">Tour the space</h1>
-    </div>
-    <ul>
-        {% for photo in photos_list %}
-        <h1>{{photo.id}}</h1>
 
-           {% endfor %}
-    </ul>
-    {% endblock%}
-</body>
+        
+        {% block content %}
+        
+        <div class="container">
 
+            <a href="#content"><h1 style="color:#2196F3;text-decoration-line:underline;text-align:center " id="top">TOP SOURCES</h1></a>
+                <div class="row" id="content">
+                        {% for source in sources %}
+        
+                        <div class="col-md-4">
+                            <div class="card-deck">
+                                    <div class="card" style="box-shadow: 3px 3px 5px #CFD8DC">
+                                            <div class="card-content">
+                                                <div class="card-header-blue" style="color:#00BCD4">
+                                                   <h2 class="card-heading" style="text-align:center;text-decoration-line: underline">{{source.name}}</h2>
+                                                   </div>
+                                                   <div class="card-body">
+                                                   <p class="card-p" style="font-size:16px ">
+                                                        {{source.description | truncate(80)}}
+                                                        
+                                                    </p>
+                                                    <a href="/articles/{{source.id}}" class="btn btn-primary">view articles</a>
+                                                 </div>
+                                    </div>
+                                    
+                                    </div>
+                            </div>
+                        
+                    </div>
+                    {% endfor %}
+                    </div>
+        </div>
+           
+            {% endblock %}
+    </body>
 </html>

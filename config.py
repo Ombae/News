@@ -2,24 +2,35 @@ import os
 
 class Config:
     '''
-    General config class
+    General configuration parent class
     '''
-
-    ROVER_API_SOURCES_URL ='https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1337&api_key={}'
-
-
-    ROVER_API_KEY = os.environ.get('ROVER_API_KEY')
-    SECRET_KEY = os.environ.get('SECRET_KEY')
-
+    
+    SOURCES_URL = 'https://newsapi.org/v2/sources?category={}&language=en&apiKey={}'
+    ARTICLES_URL = 'https://newsapi.org/v2/everything?sources={}&language=en&apiKey={}'
+    HEADLINES_URL = 'https://newsapi.org/v2/top-headlines?country=us&apiKey={}'
+    NEWS_API_KEY = os.environ.get('NEWS_API_KEY')
 
 class ProdConfig(Config):
+    '''
+    Production  configuration child class
 
+    Args:
+        Config: The parent configuration class with General configuration settings
+    '''
     pass
 
-class DevConfig(Config):
-    DEBUG = True
 
+class DevConfig(Config):
+    '''
+    Development  configuration child class
+
+    Args:
+        Config: The parent configuration class with General configuration settings
+    '''
+
+    DEBUG = True
+    
 config_options = {
 'development':DevConfig,
 'production':ProdConfig
-}  
+}

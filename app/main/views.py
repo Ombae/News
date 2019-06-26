@@ -1,6 +1,6 @@
-from flask import render_template,request,redirect,url_for
+from flask import render_template
 from . import main
-from ..requests import get_photos
+from ..request import get_sources,get_articles
 
 # Views
 @main.route('/')
@@ -9,8 +9,22 @@ def index():
     '''
     View root page function that returns the index page and its data
     '''
-    #getting photos
-    photos = get_photos()
-    print('photos')
+    
+    
+    title = 'Quick Facts | Instant News'
+    news_sources = get_sources('general')
+    print(news_sources)
+    
+    
+    return render_template('index.html',title = title, sources =news_sources)
 
-    return render_template('index.html',photos = photos)
+@main.route('/articles/<id>')
+def articles(id):
+
+    '''
+    View movie page function that returns the movie details page and its data
+    '''
+    
+    articles = get_articles(id)
+    return render_template('articles.html',id = id, articles=articles)
+
