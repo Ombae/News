@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8"> {% if title %}
+    <title> {{ title }}</title>
+    {% else %}
+    <title> Welcome to the Space </title>
+    {% endif %}
+</head>
+{% extends 'base.html'%} {% import 'macros.html' as macro%}
+
+<body>
+    {% block content %}
+
+    <div class="jumbotron">
+      <h1 class="text-center">Tour the space</h1>
+    </div>
+    <ul>
+        {% for photo in photos_list %}
+        <h1>{{photo.id}}</h1>
+
+           {% endfor %}
+    </ul>
+    {% endblock%}
+</body>
+
+</html>
