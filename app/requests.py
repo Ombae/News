@@ -32,3 +32,23 @@ def get_photos():
 
 
     return photos_results
+
+def process_results(photos_list):
+    '''
+    Function  that processes the news result and transform them to a list of Objects
+
+    Args:
+        photos_list: A list of dictionaries that contain photos details
+
+    Returns :
+        photos_results: A list of photos objects
+    '''
+    photos_results = []
+    for photo_item in photos_list:
+        photo = photo_item.get('id')
+
+
+        photos_object = Rover(photo,name,date)
+        photos_results.append(photos_object)
+
+    return photos_results
