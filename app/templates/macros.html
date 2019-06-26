@@ -1,0 +1,8 @@
+{% macro displaySourceList(photos_list) %}
+<div class="row">
+    {% for photo in photos_list %}
+ <h1>{{photo.id}}</h1>
+
+    {% endfor %}
+</div>
+{% endmacro %} 
